@@ -86,7 +86,7 @@
                             a(Agua) -- Evaporación de agua --> v(Vapor)
                             v(Vapor) -- Radiación hacia el aire --> air(Aire)
                             v(Vapor) -- Convección hacia el aire --> air(Aire)
-                            v(Vapor) -- Condensación de agua --> air(Aire)
+                            v(Vapor) -- Condensación de agua --> v(Vapor)
                         </pre>
                     <h3 class="is-size-3 block">Sistema de ecuaciones</h3>
                     <div class="columns is-mobile is-centered">
@@ -94,10 +94,8 @@
                             <p class="has-text-left mb-6">
                                 \(
                                 \begin{cases}
-                                Q_{Heatpipe} = Q_{radiación_{mar}} + Q_{convección_{mar}} + Q_{radiación_{aire}} + Q_{convección_{aire}} + Q_{condensación} \\
                                 Q_{Heatpipe} = Q_{radiación_{mar}} + Q_{convección_{mar}} + Q_{convección_{vapor}} + Q_{evaporación} \\
-                                Q_{convección_{vapor}} + Q_{evaporación} = Q_{radiación_{aire}} + Q_{convección_{aire}} + Q_{condensación} \\
-                                Q_{evaporación} = Q_{condensación} \\
+                                Q_{convección_{vapor}} + Q_{evaporación} = Q_{radiación_{aire}} + Q_{convección_{aire}} \\
                                 Q_{convección_{mar}} = h_{mar} \times A_{agua\to mar} \times (T_{agua} - T_{mar}) \\
                                 Q_{convección_{aire}} = h_{aire} \times A_{vapor\to aire} \times (T_{vapor} - T_{aire}) \\
                                 Q_{convección_{vapor}} = h_{vapor} \times A_{agua\to vapor} \times (T_{agua} - T_{vapor}) \\
@@ -144,7 +142,7 @@
                                 0 \\
                                 0 \\
                                 h_{mar} \times A_{agua\to mar} \times T_{mar} \\
-                                h_{aire} \times A_{vapor\to aire} T_{aire} \\
+                                h_{aire} \times A_{vapor\to aire} \times T_{aire} \\
                                 0 \\
                                 0 \\
                                 0 \\
