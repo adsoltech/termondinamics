@@ -96,14 +96,60 @@
                                 \begin{cases}
                                 Q_{Heatpipe} = Q_{radiación_{mar}} + Q_{convección_{mar}} + Q_{radiación_{aire}} + Q_{convección_{aire}} + Q_{condensación} \\
                                 Q_{Heatpipe} = Q_{radiación_{mar}} + Q_{convección_{mar}} + Q_{convección_{vapor}} + Q_{evaporación} \\
-                                Q_{convección_{vapor}} = Q_{radiación_{aire}} + Q_{convección_{aire}} \\
-                                Q_{convección_{vapor}} = h_{vapor} \times A_{agua\to vapor} \times (T_{agua} - T_{vapor}) \\
+                                Q_{convección_{vapor}} + Q_{evaporación} = Q_{radiación_{aire}} + Q_{convección_{aire}} + Q_{condensación} \\
+                                Q_{evaporación} = Q_{condensación} \\
                                 Q_{convección_{mar}} = h_{mar} \times A_{agua\to mar} \times (T_{agua} - T_{mar}) \\
                                 Q_{convección_{aire}} = h_{aire} \times A_{vapor\to aire} \times (T_{vapor} - T_{aire}) \\
+                                Q_{convección_{vapor}} = h_{vapor} \times A_{agua\to vapor} \times (T_{agua} - T_{vapor}) \\
                                 Q_{radiación_{mar}} = A_{agua\to mar} \times \varepsilon_{agua} \times \sigma \times T_{agua}^{4} \\
                                 Q_{radiación_{aire}} = A_{vapor\to aire} \times \varepsilon_{vapor} \times \sigma \times T_{vapor}^{4} \\
-                                Q_{evaporación} = Q_{condensación}
                                 \end{cases}
+                                \)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columns is-mobile is-centered">
+                        <div class="column is-narrow">
+                            <p class="has-text-left mb-6">
+                                \(
+                                \begin{pmatrix}
+                                0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+                                0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+                                -1 & 1 & 0 & 1 & -1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+                                1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                                0 & 0 & -1 & 0 & 0 & 0 & 0 & h_{mar} \times A_{agua\to mar} & 0 & 0 & 0 \\
+                                0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & h_{aire} \times A_{vapor\to aire} & 0 & 0 \\
+                                0 & 0 & 0 & 0 & -1 & 0 & 0 & h_{vapor} \times A_{agua\to vapor} & -h_{vapor} \times A_{agua\to vapor} & 0 & 0 \\
+                                0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & A_{agua\to mar} \times \varepsilon_{agua} \times \sigma & 0 \\
+                                0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & A_{vapor\to aire} \times \varepsilon_{vapor} \times \sigma \\
+                                \end{pmatrix}
+                                \cdot
+                                \begin{pmatrix}
+                                Q_{evaporación} \\
+                                Q_{condensación} \\
+                                Q_{convección_{mar}} \\
+                                Q_{convección_{aire}} \\
+                                Q_{convección_{vapor}} \\
+                                Q_{radiación_{mar}} \\
+                                Q_{radiación_{aire}} \\
+                                T_{agua} \\
+                                T_{vapor} \\
+                                T_{agua}^{4} \\
+                                T_{vapor}^{4}
+                                \end{pmatrix}
+                                = 
+                                \begin{pmatrix}
+                                Q_{Heatpipe} \\
+                                Q_{Heatpipe} \\
+                                0 \\
+                                0 \\
+                                h_{mar} \times A_{agua\to mar} \times T_{mar} \\
+                                h_{aire} \times A_{vapor\to aire} T_{aire} \\
+                                0 \\
+                                0 \\
+                                0 \\
+                                0 \\
+                                \end{pmatrix}
                                 \)
                             </p>
                         </div>
